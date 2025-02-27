@@ -1,0 +1,33 @@
+server:
+  port: 8761
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/eurekadb
+    username: root
+    password: Garfield#1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    eureka:
+      instance:
+        data-center-info: com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo
+
+      instance-id: ${spring.application.name}:${server.port}
+
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+  server:
+    enable-self-preservation: false
